@@ -1,9 +1,10 @@
 import discord
 from discord.ext import commands
 from session import Session
+from chance import Chance
 
 
-DISCORD_TOKEN = ""
+DISCORD_TOKEN = "NO!!!!"
 
 bot = commands.Bot(command_prefix="!",case_insensitive=True, intents = discord.Intents.all())
 
@@ -53,7 +54,7 @@ async def investigate(ctx):
     if i is not None:
         i.close()
         mySessions.remove(i)
-    mySession = Session(ctx.author, ctx.channel, "Bot Test.txt")
+    mySession = Session(ctx.author, ctx.channel, 'Bot Test.txt')
     mySessions.append(mySession)
     curInvestigation = mySession.investigate()
     if curInvestigation is not None:
@@ -84,6 +85,18 @@ async def close(ctx):
         await ctx.send("Done.")
     else:
         await ctx.send("No open sessions from " + str(ctx.author))
+        
+
+'''On command !flip, flip a coin'''
+@bot.command()
+async def flip(ctx):
+    await ctx.send(str(ctx.author) + ", You got " + Chance.flip())
+    
+
+'''On command !roll xdy[+/-]z'''
+@bot.command()
+async def roll(ctx):
+    await ctx.send(Chance.parseRollCommand(ctx.content))
         
    
 '''On message, check if this is a response to an active investigation, parse response and continue investigation'''     

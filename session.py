@@ -46,8 +46,7 @@ class Session:
     def close(self):
         self.setVariables()
         with open("tracking.txt", "a") as tracking:
-            trackPath = re.sub(r'\W+', '', self.path)
-            tracking.write(str(self.user) + "," + trackPath + "\n")
+            tracking.write(str(self.user) + "," + self.path + "\n")
         tracking.close()
         return
     
@@ -73,10 +72,8 @@ class Session:
         for option in unfilteredOptions:
             if option[-1] == '}':
                 optionComponents = option[:-1].split("{")
-                print(optionComponents)
                 param = optionComponents[1]
                 thing = optionComponents[0]
-                print("Thing: " + thing)
                 if self.checkIfPass(param):
                     output = output + '\n' + str(i) + ") " + str(thing)
                     if thing not in self.options:
@@ -101,11 +98,7 @@ class Session:
         for variable in outList:
             found = False   
             for userVar in self.userVars:
-                thisVarName = userVar.split("=")
-                print("thisVarName: " + thisVarName[0])
-                print("userVar: " + userVar)
-                print("variable: " + variable)
-                
+                thisVarName = userVar.split("=")                
                 if thisVarName[0] in variable:
                     self.userVars[self.userVars.index(userVar)] = variable.strip()
                     found = True
