@@ -38,7 +38,7 @@ class Chance:
         commandNum = command.split('d')[0]
         diceandMod = command.split('d')[1]
         
-        num = commandNum.replace("!roll ", "")
+        num = commandNum.split(" ")[1]
         if num.strip() == "":
             num = 1
         

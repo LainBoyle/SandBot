@@ -2,9 +2,10 @@ import discord
 from discord.ext import commands
 from session import Session
 from chance import Chance
+import os
 
 
-DISCORD_TOKEN = "MTM2ODczNjk1Njg5NjM3ODg5MQ.GNrF0F.nvY73ot2UgvRtMhb1DUbNjJg_HokNnjveEZgoU"
+DISCORD_TOKEN = os.environ["SANDBOT"]
 
 bot = commands.Bot(command_prefix="!",case_insensitive=True, intents = discord.Intents.all())
 
