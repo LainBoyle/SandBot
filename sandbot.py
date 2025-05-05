@@ -4,7 +4,7 @@ from session import Session
 from chance import Chance
 
 
-DISCORD_TOKEN = "NO!!!!"
+DISCORD_TOKEN = ""
 
 bot = commands.Bot(command_prefix="!",case_insensitive=True, intents = discord.Intents.all())
 
