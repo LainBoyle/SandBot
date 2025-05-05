@@ -99,7 +99,7 @@ class Session:
             found = False   
             for userVar in self.userVars:
                 thisVarName = userVar.split("=")                
-                if thisVarName[0] in variable:
+                if thisVarName[0] in variable.split("=")[0]:
                     self.userVars[self.userVars.index(userVar)] = variable.strip()
                     found = True
             if found == False:

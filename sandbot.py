@@ -4,7 +4,7 @@ from session import Session
 from chance import Chance
 
 
-DISCORD_TOKEN = ""
+DISCORD_TOKEN = "MTM2ODczNjk1Njg5NjM3ODg5MQ.GNrF0F.nvY73ot2UgvRtMhb1DUbNjJg_HokNnjveEZgoU"
 
 bot = commands.Bot(command_prefix="!",case_insensitive=True, intents = discord.Intents.all())
 
@@ -90,13 +90,22 @@ async def close(ctx):
 '''On command !flip, flip a coin'''
 @bot.command()
 async def flip(ctx):
-    await ctx.send(str(ctx.author) + ", You got " + Chance.flip())
+    await ctx.send(str(ctx.author) + ", You got " + Chance.flipCoin())
     
+'''Shorthand for flip'''
+@bot.command()
+async def f(ctx):
+    await ctx.send(str(ctx.author) + ", You got " + Chance.flipCoin())
 
 '''On command !roll xdy[+/-]z'''
 @bot.command()
 async def roll(ctx):
-    await ctx.send(Chance.parseRollCommand(ctx.content))
+    await ctx.send(Chance.roll(ctx.message.content))
+    
+'''Shorthand for roll'''
+@bot.command()
+async def r(ctx):
+    await ctx.send(Chance.roll(ctx.message.content))
         
    
 '''On message, check if this is a response to an active investigation, parse response and continue investigation'''     
